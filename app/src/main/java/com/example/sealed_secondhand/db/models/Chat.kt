@@ -6,6 +6,8 @@ class Chat : Comparable<Chat> {
     private lateinit var user2: String
     private lateinit var chatTitle: String
     private lateinit var lastChat: String
+
+    // Title 비교 정렬 가능
     override fun compareTo(other: Chat): Int {
         if (this.chatTitle > other.chatTitle) return 1
         else if (this.chatTitle < other.chatTitle) return -1

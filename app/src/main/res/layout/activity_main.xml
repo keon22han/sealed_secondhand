@@ -20,7 +20,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/plusFloatButton"
         app:layout_constraintEnd_toEndOf="@+id/plusFloatButton"
         app:layout_constraintStart_toStartOf="@+id/plusFloatButton"
-        app:layout_constraintTop_toTopOf="@+id/plusFloatButton" />
+        app:layout_constraintTop_toTopOf="@+id/plusFloatButton"
+        app:fabSize="mini"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/chattingFloatButton"
@@ -32,16 +33,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/plusFloatButton"
         app:layout_constraintEnd_toEndOf="@+id/plusFloatButton"
         app:layout_constraintStart_toStartOf="@+id/plusFloatButton"
-        app:layout_constraintTop_toTopOf="@+id/plusFloatButton" />
+        app:layout_constraintTop_toTopOf="@+id/plusFloatButton"
+        app:fabSize="mini"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/plusFloatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="75dp"
         android:src="@drawable/plus"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:fabSize="mini"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
