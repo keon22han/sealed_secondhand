@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040097078887",
+    "project_id": "sealed-secondhand",
+    "storage_bucket": "sealed-secondhand.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040097078887:android:2fbf7b81c01c8a4854aec2",
+        "android_client_info": {
+          "package_name": "com.example.sealed_secondhand"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzM8dJmZRwfHTQ5N_5yZv5pew8vtbiEUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
