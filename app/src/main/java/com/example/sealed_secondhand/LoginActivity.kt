@@ -12,10 +12,10 @@ import androidx.transition.Fade
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
-import com.example.sealed_secondhand.db.FirebaseAuth
+import com.example.sealed_secondhand.db.FirebaseAuthentication
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var firebaseauth: FirebaseAuth
+    private lateinit var firebaseauth: FirebaseAuthentication
     private lateinit var scene1 : Scene
     private lateinit var loginButton : Button
     private lateinit var signupButton : Button
@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        firebaseauth = FirebaseAuth.getInstance(this)
+        firebaseauth = FirebaseAuthentication.getInstance(this)
         val sceneRoot = findViewById<FrameLayout>(R.id.scene_root)
         scene1 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_login_scene1, this)
         var fadeTransition: Transition = Fade()
@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                 loginButton = findViewById(R.id.loginButton)
                 loginButton.setOnClickListener {
                     if (idEditText.text.toString() != "" && pwEditText.text.toString() != "") {
-                        FirebaseAuth.doLogin(idEditText.text.toString(), pwEditText.text.toString())
+                        FirebaseAuthentication.doLogin(idEditText.text.toString(), pwEditText.text.toString())
                             .addOnCompleteListener(this) {
                                 if (it.isSuccessful) {
                                     Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
                 signupButton = findViewById(R.id.signupButton)
                 signupButton.setOnClickListener {
                     if (idEditText.text.toString() != "" && pwEditText.text.toString() != "") {
-                        FirebaseAuth.doSignUp(idEditText.text.toString(), pwEditText.text.toString())
+                        FirebaseAuthentication.doSignUp(idEditText.text.toString(), pwEditText.text.toString())
                             .addOnCompleteListener(this) {
                                 if (it.isSuccessful) {
                                     Toast.makeText(this, "SignUp Success, 로그인을 진행해 주세요.", Toast.LENGTH_SHORT).show()
