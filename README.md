@@ -1,8 +1,11 @@
 ![rect](https://capsule-render.vercel.app/api?type=rect&color=gradient&text=SEALED_SECONDHAND&fontAlign=50&fontSize=35&textBg=false&desc=Android&descAlign=80&descAlignY=70)
 
-## Timeline
 <div align="center">
+
+## Timeline
+
 2023/10/23 ~ 2023/11/30
+
 </div>
 <br>
 <br>
