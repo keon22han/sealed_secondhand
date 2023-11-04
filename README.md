@@ -65,4 +65,18 @@
 
 <br>
 
+### 11/05 진행 사항
+
+1.로딩화면 구현
+<br>
+2.로그인 페이지 구현
+<br>
+3.Firebase 로그인, 회원가입 기능 구현
+<br>
+4.MainActivity Fragment전환으로 Floating Button 구현
+<br>
+5.RecyclerView를 사용한 채팅리스트 구현
+
 </div>
+
+
