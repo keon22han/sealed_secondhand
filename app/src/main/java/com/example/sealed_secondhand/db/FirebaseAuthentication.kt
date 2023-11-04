@@ -28,10 +28,13 @@ class FirebaseAuth private constructor() {
             }
         }
 
-        // TODO: AppCompat 딴에서 Auth Result 받고, 성공이라면 MainActivity 넘어가게 하기
         fun doLogin(userEmail: String, password: String): Task<AuthResult> {
             Log.i("hi","doLogin")
             return Firebase.auth.signInWithEmailAndPassword(userEmail, password)
+        }
+
+        fun doSignUp(userEmail: String, password: String): Task<AuthResult> {
+            return Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
         }
     }
 }
