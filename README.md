@@ -4,6 +4,8 @@
 
 ### 📆 Timeline
 
+---
+
 2023/10/23 ~ 2023/11/30
 
 </div>
@@ -11,6 +13,9 @@
 <br>
 
 ### 👨‍👨‍👦‍👦 Members
+
+---
+
 * 김택신 (1971194)
 * 허진우 (2171063)
 * 권승진 (1971258)
@@ -19,11 +24,17 @@
 <br>
 
 ### 💻 Using Skills
+
+---
+
 <img src="https://img.shields.io/badge/Kotlin-F48E00?style=flat&logo=Kotlin&logoColor=white"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"/>
 
 <br>
 
 ### 📄 Outline
+
+---
+
 - 사용자 계정 생성 및 로그인 기능 (20)
 - 판매 글 목록 보기 기능 (10)
 - 판매 글 목록 보기에서 필터 기능 (판매된 상품 제외, 가격 조건) (10)
