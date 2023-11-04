@@ -1,5 +1,5 @@
 # sealed_secondhand
-![rect](https://capsule-render.vercel.app/api?type=rect&color=gradient&text=sealed_secondhand&fontAlign=30&fontSize=30&textBg=true&descAlign=60&descAlignY=50)
+![rect](https://capsule-render.vercel.app/api?type=rect&color=gradient&text=sealed_secondhand&fontAlign=30&fontSize=30&textBg=true&desc=SEALED_SECONDHAND&descAlign=60&descAlignY=50)
 ## Members
 * 김택신 (1971194)
 * 허진우 (2171063)
