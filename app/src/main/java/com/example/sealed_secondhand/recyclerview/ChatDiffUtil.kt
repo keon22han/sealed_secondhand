@@ -1,14 +1,14 @@
 package com.example.sealed_secondhand.recyclerview
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.sealed_secondhand.db.models.Chat
+import com.example.sealed_secondhand.db.models.ChatLog
 
-class ChatDiffUtil : DiffUtil.ItemCallback<Chat>() {
-    override fun areItemsTheSame(oldItem: Chat, newItem: Chat): Boolean {
+class ChatDiffUtil: DiffUtil.ItemCallback<ChatLog>() {
+    override fun areItemsTheSame(oldItem: ChatLog, newItem: ChatLog): Boolean {
         return oldItem.equals(newItem)
     }
 
-    override fun areContentsTheSame(oldItem: Chat, newItem: Chat): Boolean {
+    override fun areContentsTheSame(oldItem: ChatLog, newItem: ChatLog): Boolean {
         return oldItem.equals(newItem)
     }
 

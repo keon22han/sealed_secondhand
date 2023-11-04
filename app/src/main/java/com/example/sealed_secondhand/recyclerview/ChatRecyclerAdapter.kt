@@ -3,33 +3,23 @@ package com.example.sealed_secondhand.recyclerview
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sealed_secondhand.R
-import com.example.sealed_secondhand.db.models.Chat
+import com.example.sealed_secondhand.db.models.ChatLog
 
-class ChatRecyclerAdapter(chatDiffUtil: ChatDiffUtil) : ListAdapter<Chat, ChatRecyclerAdapter.ChatViewHolder>(ChatDiffUtil()) {
+class ChatRecyclerAdapter : ListAdapter<ChatLog, ChatRecyclerAdapter.ChatViewHolder>(ChatDiffUtil()) {
 
     class ChatViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        private lateinit var contentTextView: TextView
 
-        private lateinit var chatTitle: TextView
-        private lateinit var chatImage: ImageView
-        private lateinit var lastChat: TextView
-        init {
-            this.chatTitle = itemView.findViewById(R.id.chatTitle)
-            this.chatImage = itemView.findViewById(R.id.chatImage)
-            this.lastChat = itemView.findViewById(R.id.lastChat)
+        init{
+            contentTextView = itemView.findViewById(R.id.chatTextView)
         }
 
-        fun settingView(item: Chat) {
-            chatTitle.setText(item.getChatTitle())
-
-            // TODO: 1.Firebase에서 image Root 가져오고 2.Storage 가져온 Root로 접근 3.이미지 가져오기 4.Bitmap변환 5.Set
-            //chatImage.setImageBitmap()
-
-            lastChat.setText(item.getLastChat())
+        fun settingView(item: ChatLog) {
+            contentTextView.setText(item.getContent())
         }
     }
 

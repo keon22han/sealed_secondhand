@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pictureFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
     private lateinit var chattingFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
     private lateinit var plusFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
+
     private var isFloatOpen = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             toggleFloat()
         }
         chattingFloatButton.setOnClickListener {
-            replaceFragment(ChatActivity())
+            replaceFragment(ChatListActivity(this))
         }
     }
 
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         isFloatOpen = !isFloatOpen
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(
                 androidx.appcompat.R.anim.abc_fade_in,
