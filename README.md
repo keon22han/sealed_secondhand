@@ -16,8 +16,12 @@
 * 권승진 (1971258)
 * 한건희 (1971193)
 
+<br>
+
 ## Using Skill
 <img src="https://img.shields.io/badge/Kotlin-F48E00?style=flat&logo=Kotlin&logoColor=white"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"/>
+
+<br>
 
 ## Outline
 - 사용자 계정 생성 및 로그인 기능 (20)
