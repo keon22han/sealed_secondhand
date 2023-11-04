@@ -2,7 +2,7 @@
 
 ![rect](https://capsule-render.vercel.app/api?type=rect&color=gradient&text=SEALED_SECONDHAND&fontAlign=50&fontSize=55&textBg=false&desc=Android&descAlign=80&descAlignY=80)
 
-## 📆 Timeline
+### 📆 Timeline
 
 2023/10/23 ~ 2023/11/30
 
@@ -10,7 +10,7 @@
 <br>
 <br>
 
-## 👨‍👨‍👦‍👦 Members
+### 👨‍👨‍👦‍👦 Members
 * 김택신 (1971194)
 * 허진우 (2171063)
 * 권승진 (1971258)
@@ -18,12 +18,12 @@
 
 <br>
 
-## 💻 Using Skills
+### 💻 Using Skills
 <img src="https://img.shields.io/badge/Kotlin-F48E00?style=flat&logo=Kotlin&logoColor=white"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"/>
 
 <br>
 
-## 📄 Outline
+### 📄 Outline
 - 사용자 계정 생성 및 로그인 기능 (20)
 - 판매 글 목록 보기 기능 (10)
 - 판매 글 목록 보기에서 필터 기능 (판매된 상품 제외, 가격 조건) (10)
