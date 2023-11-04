@@ -1,4 +1,7 @@
 ![rect](https://capsule-render.vercel.app/api?type=rect&color=gradient&text=SEALED_SECONDHAND&fontAlign=50&fontSize=35&textBg=false&desc=Android&descAlign=80&descAlignY=70)
+
+<div align="center">
+    
 ## Members
 * 김택신 (1971194)
 * 허진우 (2171063)
@@ -16,3 +19,5 @@
 - 판매자와 구매 희망자 간 메세지 보내기 기능, DB 활용하여 구현 (20)
     - 정성 평가, 디자인이나 안정성 등을 바탕으로 정성 평가 (10)
     - 추가 기능 구현에 대해서는 자유이지만, 정성 평가에는 반영되지 않으며 추가 기능으로 인한 앱 불안정은 정성 평가에 반영될 수 있음.
+
+</div>
