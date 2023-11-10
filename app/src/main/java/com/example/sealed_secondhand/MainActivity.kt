@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
                 androidx.appcompat.R.anim.abc_fade_in,
                 androidx.appcompat.R.anim.abc_fade_out
             )
-            .add(R.id.fragment_container, ChatActivity("hi", "1900"))
+            //.add(R.id.fragment_container, ChatListActivity(this))
+            .add(R.id.fragment_container, ChatActivity("에어팟팔아용", "1971193", "keonheehan"))
             .addToBackStack(null)
             .commit()
     }
@@ -55,10 +56,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun replaceFragment(fragment: Fragment) {
-        if(supportFragmentManager.findFragmentById(R.id.fragment_container)?.javaClass?.name == "ChatListActivity") {
-            Toast.makeText(applicationContext, "dd", Toast.LENGTH_SHORT).show()
-            return
-        }
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(
                 androidx.appcompat.R.anim.abc_fade_in,

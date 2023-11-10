@@ -6,5 +6,6 @@ class ChatListModel {
     lateinit var chatTitle: String
     lateinit var itemImageUrl: String
     lateinit var lastChat: String
-    lateinit var chatRoomUid: String
+    lateinit var chatRoomId: String
+    lateinit var postId: String
 }

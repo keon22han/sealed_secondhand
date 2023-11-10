@@ -4,6 +4,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
@@ -18,11 +19,14 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
 
-class ChatRecyclerAdapter : ListAdapter<ChatModel.Comment, ChatRecyclerAdapter.ChatViewHolder>(ChatDiffUtil()) {
+class ChatRecyclerAdapter(comments: ArrayList<ChatModel.Comment>) : ListAdapter<ChatModel.Comment, ChatRecyclerAdapter.ChatViewHolder>(ChatDiffUtil()) {
     private var simpleDateFormat = SimpleDateFormat("yyy.MM.dd HH:mm")
-    private lateinit var comments: ArrayList<ChatModel.Comment>
+    private var comments: ArrayList<ChatModel.Comment> = ArrayList()
     private lateinit var destUser: User
 
+    init {
+        this.comments = comments
+    }
     class ChatViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         lateinit var chatView: View
 
@@ -32,7 +36,7 @@ class ChatRecyclerAdapter : ListAdapter<ChatModel.Comment, ChatRecyclerAdapter.C
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        var view: View = LayoutInflater.from(parent.getContext())
+        var view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.chat_item, parent, false)
         return ChatViewHolder(view)
     }
@@ -40,15 +44,21 @@ class ChatRecyclerAdapter : ListAdapter<ChatModel.Comment, ChatRecyclerAdapter.C
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         if(comments[position].uid == FirebaseAuthentication.getCurrentUser()) {
             holder.chatView.findViewById<TextView>(R.id.chatTextView).text = comments[position].message
-            holder.chatView.findViewById<TextView>(R.id.chatTextView).setBackgroundResource(R.drawable.button_style3)
-            holder.chatView.findViewById<LinearLayout>(R.id.chatLayout).gravity = Gravity.RIGHT
-            holder.chatView.findViewById<TextView>(R.id.timeTextView).gravity = Gravity.LEFT
+            holder.chatView.findViewById<TextView>(R.id.chatTextView).setBackgroundResource(R.drawable.button_style2)
+            var chatLayout: LinearLayout = holder.chatView.findViewById(R.id.chatLayout)
+            val layoutParams = chatLayout.layoutParams as? FrameLayout.LayoutParams
+
+            layoutParams?.let {
+                it.gravity = Gravity.RIGHT // 원하는 Gravity 값 설정
+                chatLayout.layoutParams = it
+            }
+            holder.chatView.findViewById<TextView>(R.id.timeTextView).foregroundGravity = Gravity.LEFT
         }
         else {
-            Glide.with(holder.itemView.context)
-                .load(destUser.profileImgUrl)
-                .apply(RequestOptions().circleCrop())
-                .into(holder.chatView.findViewById(R.id.userProfileImageView))
+//            Glide.with(holder.itemView.context)
+//                .load(destUser.profileImgUrl)
+//                .apply(RequestOptions().circleCrop())
+//                .into(holder.chatView.findViewById(R.id.userProfileImageView))
 
             holder.chatView.findViewById<TextView>(R.id.chatTextView).text = comments[position].message
             holder.chatView.findViewById<TextView>(R.id.chatTextView).setBackgroundResource(R.drawable.button_style3)

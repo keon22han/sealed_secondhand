@@ -41,16 +41,21 @@ class FirebaseAuthentication private constructor() {
             return myUid
         }
 
-        fun getMessageRoot(chatRoomUid: String): DatabaseReference {
-            return FirebaseDatabase.getInstance().reference.child("chatRooms").child(chatRoomUid).child("comments")
+        fun getMessageRoot(chatRoomIdd: String): DatabaseReference {
+            return FirebaseDatabase.getInstance().reference.child("chatRooms").child(chatRoomIdd).child("comments")
         }
 
         fun sendMessageToDataBase(chatRoomUid: String, comment: ChatModel.Comment): Task<Void> {
             return FirebaseDatabase.getInstance().reference.child("chatRooms").child(chatRoomUid).child("comments").push().setValue(comment)
         }
 
-        fun getChatListRoot(): Query {
-            return FirebaseDatabase.getInstance().reference.child("chatList").orderByChild("users/$myUid").equalTo(true)
+        fun getChatListRootOrdered(): Query {
+            return FirebaseDatabase.getInstance().reference.child("chatRooms").orderByChild("users/$myUid")
         }
+
+        fun getChatListRoot(): DatabaseReference {
+            return FirebaseDatabase.getInstance().reference.child("chatRooms")
+        }
+
     }
 }
