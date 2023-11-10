@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
                         FirebaseAuthentication.doLogin(idEditText.text.toString(), pwEditText.text.toString())
                             .addOnCompleteListener(this) {
                                 if (it.isSuccessful) {
+                                    FirebaseAuthentication.setCurrentUser()
                                     Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(applicationContext, MainActivity::class.java)
                                     startActivity(intent)

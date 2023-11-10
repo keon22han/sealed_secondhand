@@ -3,6 +3,7 @@
     android:id="@+id/chatListContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="horizontal">
 
     <ImageView
@@ -20,6 +21,7 @@
             android:id="@+id/chatTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_style4"
             android:textSize="25dp"/>
         <TextView
             android:id="@+id/lastChat"

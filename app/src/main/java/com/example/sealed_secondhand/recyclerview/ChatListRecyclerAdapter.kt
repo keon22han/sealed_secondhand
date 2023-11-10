@@ -11,20 +11,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sealed_secondhand.ChatActivity
 import com.example.sealed_secondhand.MainActivity
 import com.example.sealed_secondhand.R
-import com.example.sealed_secondhand.db.models.Chat
+import com.example.sealed_secondhand.db.models.ChatModel
 
-class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<Chat, ChatListRecyclerAdapter.ChatListViewHolder>(ChatListDiffUtil()) {
+class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<ChatModel, ChatListRecyclerAdapter.ChatListViewHolder>(ChatListDiffUtil()) {
 
-    lateinit var mainActivity: MainActivity
+    private var mainActivity: MainActivity
+
     init {
         this.mainActivity = mainActivity
     }
-    class ChatListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
+    class ChatListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        private var lastChat: TextView
         private var chatTitle: TextView
         private var chatImage: ImageView
-        private var lastChat: TextView
-        private lateinit var layout: LinearLayout
+        private var layout: LinearLayout
+        private lateinit var destUid: String
+
         init {
             this.chatTitle = itemView.findViewById(R.id.chatTitle)
             this.chatImage = itemView.findViewById(R.id.chatImage)
@@ -35,26 +38,21 @@ class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<Chat, Ch
         fun getLayout(): LinearLayout {
             return layout
         }
-        fun settingView(item: Chat) {
-            chatTitle.setText(item.getChatTitle())
+
+        fun settingView(item: ChatModel) {
+            chatTitle.text = item.chatTitle
+            lastChat.text = item.lastChat
+            destUid = item.destUid
 
             // TODO: 1.Firebase에서 image Root 가져오고 2.Storage 가져온 Root로 접근 3.이미지 가져오기 4.Bitmap변환 5.Set
             //chatImage.setImageBitmap()
-
-            lastChat.setText(item.getLastChat())
-        }
-
-        fun getChatTitle(): String {
-            return chatTitle.text.toString()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListViewHolder {
-
-        var view: View = LayoutInflater.from(parent.getContext())
+        var view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.chatlist_item, parent, false)
         var chatViewHolder = ChatListViewHolder(view)
-
 
         return chatViewHolder
     }
@@ -62,7 +60,7 @@ class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<Chat, Ch
     override fun onBindViewHolder(holder: ChatListViewHolder, position: Int) {
         holder.settingView(getItem(position))
         holder.getLayout().setOnClickListener {
-            mainActivity.replaceFragment(ChatActivity(holder.getChatTitle()))
+            mainActivity.replaceFragment(ChatActivity(getItem(position).chatTitle, getItem(position).postId, getItem(position).destUid))
         }
     }
 }

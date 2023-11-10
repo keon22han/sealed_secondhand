@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,17 @@ class MainActivity : AppCompatActivity() {
         chattingFloatButton.setOnClickListener {
             replaceFragment(ChatListActivity(this))
         }
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                androidx.appcompat.R.anim.abc_fade_in,
+                androidx.appcompat.R.anim.abc_fade_out,
+                androidx.appcompat.R.anim.abc_fade_in,
+                androidx.appcompat.R.anim.abc_fade_out
+            )
+            .add(R.id.fragment_container, ChatListActivity(this))
+            //.add(R.id.fragment_container, ChatActivity("에어팟팔아용", "1971193", "keonheehan"))
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun toggleFloat() {
@@ -51,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 androidx.appcompat.R.anim.abc_fade_in,
                 androidx.appcompat.R.anim.abc_fade_out
             )
-            .replace(R.id.fragment_container, fragment)
+            .add(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
     }
