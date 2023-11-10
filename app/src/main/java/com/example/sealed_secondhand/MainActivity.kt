@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,16 @@ class MainActivity : AppCompatActivity() {
         chattingFloatButton.setOnClickListener {
             replaceFragment(ChatListActivity(this))
         }
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                androidx.appcompat.R.anim.abc_fade_in,
+                androidx.appcompat.R.anim.abc_fade_out,
+                androidx.appcompat.R.anim.abc_fade_in,
+                androidx.appcompat.R.anim.abc_fade_out
+            )
+            .add(R.id.fragment_container, ChatActivity("hi", "1900"))
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun toggleFloat() {
@@ -44,6 +55,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun replaceFragment(fragment: Fragment) {
+        if(supportFragmentManager.findFragmentById(R.id.fragment_container)?.javaClass?.name == "ChatListActivity") {
+            Toast.makeText(applicationContext, "dd", Toast.LENGTH_SHORT).show()
+            return
+        }
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(
                 androidx.appcompat.R.anim.abc_fade_in,
@@ -51,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 androidx.appcompat.R.anim.abc_fade_in,
                 androidx.appcompat.R.anim.abc_fade_out
             )
-            .replace(R.id.fragment_container, fragment)
+            .add(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
     }
