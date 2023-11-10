@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sealed_secondhand.ChatActivity
 import com.example.sealed_secondhand.MainActivity
 import com.example.sealed_secondhand.R
-import com.example.sealed_secondhand.db.models.ChatListModel
 import com.example.sealed_secondhand.db.models.ChatModel
 
 class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<ChatModel, ChatListRecyclerAdapter.ChatListViewHolder>(ChatListDiffUtil()) {

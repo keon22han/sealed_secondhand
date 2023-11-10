@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
                 androidx.appcompat.R.anim.abc_fade_in,
                 androidx.appcompat.R.anim.abc_fade_out
             )
-            //.add(R.id.fragment_container, ChatListActivity(this))
-            .add(R.id.fragment_container, ChatActivity("에어팟팔아용", "1971193", "keonheehan"))
+            .add(R.id.fragment_container, ChatListActivity(this))
+            //.add(R.id.fragment_container, ChatActivity("에어팟팔아용", "1971193", "keonheehan"))
             .addToBackStack(null)
             .commit()
     }
