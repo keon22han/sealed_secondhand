@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
+        android:inputType="textPassword"
         android:hint="PASSWORD"/>
     <LinearLayout
         android:id="@+id/loginSignupLayout"
