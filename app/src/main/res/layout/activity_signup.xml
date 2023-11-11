@@ -41,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:inputType="textPassword"
             android:hint="Password를 입력하세요."/>
     </LinearLayout>
     <LinearLayout
