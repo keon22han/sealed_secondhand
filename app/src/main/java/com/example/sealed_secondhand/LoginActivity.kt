@@ -27,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
         firebaseauth = FirebaseAuthentication.getInstance(this)
         val sceneRoot = findViewById<FrameLayout>(R.id.scene_root)
         scene1 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_login_scene1, this)
-        var fadeTransition: Transition = Fade()
         var transition: Transition = TransitionInflater.from(this).inflateTransition(R.transition.transition1)
 
         val thread = Thread {
@@ -57,20 +56,9 @@ class LoginActivity : AppCompatActivity() {
                 }
                 signupButton = findViewById(R.id.signupButton)
                 signupButton.setOnClickListener {
-                    if (idEditText.text.toString() != "" && pwEditText.text.toString() != "") {
-                        FirebaseAuthentication.doSignUp(idEditText.text.toString(), pwEditText.text.toString())
-                            .addOnCompleteListener(this) {
-                                if (it.isSuccessful) {
-                                    Toast.makeText(this, "SignUp Success, 로그인을 진행해 주세요.", Toast.LENGTH_SHORT).show()
-                                    idEditText.setText("")
-                                    pwEditText.setText("")
-                                } else {
-                                    Toast.makeText(this, "SignUp Failed", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                    } else {
-                        Toast.makeText(this, "ID 및 PASSWORD를 입력해주세요.", Toast.LENGTH_SHORT).show()
-                    }
+                    val intent = Intent(applicationContext, SignupActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
 
             }
@@ -78,3 +66,19 @@ class LoginActivity : AppCompatActivity() {
         thread.start()
     }
 }
+
+//                    // 회원가입 관련 코드
+//                    if (idEditText.text.toString() != "" && pwEditText.text.toString() != "") {
+//                        FirebaseAuthentication.doSignUp(idEditText.text.toString(), pwEditText.text.toString())
+//                            .addOnCompleteListener(this) {
+//                                if (it.isSuccessful) {
+//                                    Toast.makeText(this, "SignUp Success, 로그인을 진행해 주세요.", Toast.LENGTH_SHORT).show()
+//                                    idEditText.setText("")
+//                                    pwEditText.setText("")
+//                                } else {
+//                                    Toast.makeText(this, "SignUp Failed", Toast.LENGTH_SHORT).show()
+//                                }
+//                            }
+//                    } else {
+//                        Toast.makeText(this, "ID 및 PASSWORD를 입력해주세요.", Toast.LENGTH_SHORT).show()
+//                    }

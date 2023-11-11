@@ -44,7 +44,8 @@ class ChatRecyclerAdapter(comments: ArrayList<ChatModel.Comment>) : ListAdapter<
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         if(comments[position].uid == FirebaseAuthentication.getCurrentUser()) {
             holder.chatView.findViewById<TextView>(R.id.chatTextView).text = comments[position].message
-            holder.chatView.findViewById<TextView>(R.id.chatTextView).setBackgroundResource(R.drawable.button_style2)
+            holder.chatView.findViewById<LinearLayout>(R.id.chatTextLayout).setBackgroundResource(R.drawable.button_style2)
+            holder.chatView.findViewById<TextView>(R.id.timeTextView).gravity = Gravity.LEFT
             var chatLayout: LinearLayout = holder.chatView.findViewById(R.id.chatLayout)
             val layoutParams = chatLayout.layoutParams as? FrameLayout.LayoutParams
 
@@ -61,7 +62,7 @@ class ChatRecyclerAdapter(comments: ArrayList<ChatModel.Comment>) : ListAdapter<
 //                .into(holder.chatView.findViewById(R.id.userProfileImageView))
 
             holder.chatView.findViewById<TextView>(R.id.chatTextView).text = comments[position].message
-            holder.chatView.findViewById<TextView>(R.id.chatTextView).setBackgroundResource(R.drawable.button_style3)
+            holder.chatView.findViewById<LinearLayout>(R.id.chatTextLayout).setBackgroundResource(R.drawable.button_style3)
             holder.chatView.findViewById<LinearLayout>(R.id.chatLayout).gravity = Gravity.RIGHT
             holder.chatView.findViewById<TextView>(R.id.timeTextView).gravity = Gravity.LEFT
         }
