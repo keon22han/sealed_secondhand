@@ -22,25 +22,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="8dp" />
-            <TextView
-                android:id="@+id/chatTextView"
+                android:textColor="@color/white"
+                android:textSize="10dp" />
+            <LinearLayout
+                android:id="@+id/chatTextLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:hint="         "
                 android:background="@drawable/button_style2">
-            </TextView>
+                <TextView
+                    android:id="@+id/chatTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="20dp">
+                </TextView>
+            </LinearLayout>
             <TextView
                 android:id="@+id/timeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="2000.10.24"
+                android:textColor="@color/white"
                 android:textSize="8dp"/>
         </LinearLayout>
-
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="#BCBCBC" />
 </FrameLayout>
