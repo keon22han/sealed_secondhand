@@ -17,7 +17,7 @@ import com.google.firebase.database.getValue
 
 
 class ChatListActivity(mainActivity: MainActivity) : Fragment() {
-    lateinit var mainActivity: MainActivity
+    var mainActivity: MainActivity
     private lateinit var chatListRecyclerView: RecyclerView
     private lateinit var chatListRecyclerAdapter: ChatListRecyclerAdapter
 
