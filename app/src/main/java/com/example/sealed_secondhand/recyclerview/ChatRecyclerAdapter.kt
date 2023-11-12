@@ -22,7 +22,6 @@ import java.util.TimeZone
 class ChatRecyclerAdapter(comments: ArrayList<ChatModel.Comment>) : ListAdapter<ChatModel.Comment, ChatRecyclerAdapter.ChatViewHolder>(ChatDiffUtil()) {
     private var simpleDateFormat = SimpleDateFormat("yyy.MM.dd HH:mm")
     private var comments: ArrayList<ChatModel.Comment> = ArrayList()
-    private lateinit var destUser: User
 
     init {
         this.comments = comments
@@ -46,14 +45,7 @@ class ChatRecyclerAdapter(comments: ArrayList<ChatModel.Comment>) : ListAdapter<
             holder.chatView.findViewById<TextView>(R.id.chatTextView).text = comments[position].message
             holder.chatView.findViewById<LinearLayout>(R.id.chatTextLayout).setBackgroundResource(R.drawable.button_style2)
             holder.chatView.findViewById<TextView>(R.id.timeTextView).gravity = Gravity.LEFT
-            var chatLayout: LinearLayout = holder.chatView.findViewById(R.id.chatLayout)
-            val layoutParams = chatLayout.layoutParams as? FrameLayout.LayoutParams
-
-            layoutParams?.let {
-                it.gravity = Gravity.RIGHT // 원하는 Gravity 값 설정
-                chatLayout.layoutParams = it
-            }
-            holder.chatView.findViewById<TextView>(R.id.timeTextView).foregroundGravity = Gravity.LEFT
+            holder.chatView.findViewById<LinearLayout>(R.id.chatLayout).gravity = Gravity.RIGHT
         }
         else {
 //            Glide.with(holder.itemView.context)
@@ -63,8 +55,8 @@ class ChatRecyclerAdapter(comments: ArrayList<ChatModel.Comment>) : ListAdapter<
 
             holder.chatView.findViewById<TextView>(R.id.chatTextView).text = comments[position].message
             holder.chatView.findViewById<LinearLayout>(R.id.chatTextLayout).setBackgroundResource(R.drawable.button_style3)
-            holder.chatView.findViewById<LinearLayout>(R.id.chatLayout).gravity = Gravity.RIGHT
-            holder.chatView.findViewById<TextView>(R.id.timeTextView).gravity = Gravity.LEFT
+            holder.chatView.findViewById<LinearLayout>(R.id.chatLayout).gravity = Gravity.LEFT
+            holder.chatView.findViewById<TextView>(R.id.timeTextView).gravity = Gravity.RIGHT
         }
         holder.chatView.findViewById<TextView>(R.id.timeTextView).text = getDateTime(position)
     }

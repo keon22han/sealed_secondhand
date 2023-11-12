@@ -3,7 +3,6 @@
     android:id="@+id/chatListContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:orientation="horizontal">
 
     <ImageView
@@ -17,16 +16,29 @@
         android:layout_height="100dp"
         android:orientation="vertical"
         android:layout_weight="4">
-        <TextView
-            android:id="@+id/chatTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_style4"
-            android:textSize="25dp"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/button_style4">
+            <TextView
+                android:id="@+id/chatTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textColor="@color/white"
+                android:textSize="25dp"/>
+        </LinearLayout>
         <TextView
             android:id="@+id/lastChat"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:textSize="10dp"/>
     </LinearLayout>
 
