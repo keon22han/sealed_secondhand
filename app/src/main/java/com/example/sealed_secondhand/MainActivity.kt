@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.sealed_secondhand.db.models.PostListModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var pictureFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         // TODO: setOnClickListener 작성
         plusFloatButton.setOnClickListener {
             toggleFloat()
+        }
+        pictureFloatButton.setOnClickListener {
+            replaceFragment(PostActivity(this@MainActivity, PostListModel(), true))
         }
         chattingFloatButton.setOnClickListener {
             replaceFragment(ChatListActivity(this))
@@ -65,5 +69,11 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    fun popBackStack() {
+        supportFragmentManager.popBackStack()
+        if(supportFragmentManager.backStackEntryCount == 0)
+            finish()
     }
 }

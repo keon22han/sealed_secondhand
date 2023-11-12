@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sealed_secondhand.MainActivity
+import com.example.sealed_secondhand.PostActivity
 import com.example.sealed_secondhand.R
 import com.example.sealed_secondhand.db.models.PostListModel
 
@@ -57,7 +58,7 @@ class PostListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<PostList
 
         holder.postListLayout.setOnClickListener {
             // TODO: PostActivity 추가되면 해당 코드 주석 제거
-            // mainActivity.replaceFragment(PostActivity(getItem(position))
+            mainActivity.replaceFragment(PostActivity(mainActivity, getItem(position), false))
         }
     }
 }
