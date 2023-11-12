@@ -6,6 +6,8 @@ class PostListModel {
     lateinit var postContent: String
     lateinit var itemImageUrl: String
     lateinit var price: String
-    lateinit var User: User
+    lateinit var user: User
     var saleState: Boolean = true
+
+
 }
