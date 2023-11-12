@@ -27,7 +27,7 @@ class ChatRecyclerAdapter(comments: ArrayList<ChatModel.Comment>) : ListAdapter<
         this.comments = comments
     }
     class ChatViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        lateinit var chatView: View
+        var chatView: View
 
         init{
             chatView = itemView

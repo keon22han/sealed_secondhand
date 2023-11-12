@@ -52,9 +52,7 @@ class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<ChatMode
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListViewHolder {
         var view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.chatlist_item, parent, false)
-        var chatViewHolder = ChatListViewHolder(view)
-
-        return chatViewHolder
+        return ChatListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ChatListViewHolder, position: Int) {
