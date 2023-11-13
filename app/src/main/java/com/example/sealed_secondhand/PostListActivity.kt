@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,6 +53,7 @@ class PostListActivity(mainActivity: MainActivity): Fragment() {
         FirebaseDatabase.getInstance().reference.child("Post")
             .addValueEventListener(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    postList.clear()
                     for (dataSnapShot in snapshot.children) {
                         postList.add(dataSnapShot.getValue<PostListModel>() as PostListModel)
                     }

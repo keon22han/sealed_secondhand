@@ -1,9 +1,12 @@
 package com.example.sealed_secondhand
 
 import android.animation.ObjectAnimator
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.sealed_secondhand.db.models.PostListModel
 
@@ -26,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             toggleFloat()
         }
         pictureFloatButton.setOnClickListener {
-            replaceFragment(PostActivity(this@MainActivity, PostListModel(), true))
+            replaceFragment(PostActivity(this@MainActivity, "", PostListModel(), true))
         }
         chattingFloatButton.setOnClickListener {
             replaceFragment(ChatListActivity(this))
@@ -75,5 +78,12 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack()
         if(supportFragmentManager.backStackEntryCount == 0)
             finish()
+    }
+
+    fun changeActivity(activity: Activity) {
+        Toast.makeText(applicationContext,"hi", Toast.LENGTH_SHORT).show()
+        val intent = Intent(applicationContext, activity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
