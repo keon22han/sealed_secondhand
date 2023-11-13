@@ -5,11 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:id="@+id/mainBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#809BFF"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="23"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@mipmap/ic_launcher_round"/>
+
+        <TextView
+            android:id="@+id/mainBarTextView"
+            android:layout_width="302dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:textSize="10dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_style3"
+            android:text="로그아웃"/>
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/plusFloatButton" />
+        android:layout_above="@id/plusFloatButton"
+        android:layout_marginTop="48dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pictureFloatButton"
         android:layout_width="wrap_content"

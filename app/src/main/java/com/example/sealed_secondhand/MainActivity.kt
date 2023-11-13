@@ -6,14 +6,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.sealed_secondhand.db.models.PostListModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var pictureFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
     private lateinit var chattingFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
     private lateinit var plusFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
+    private lateinit var logoutButton : Button
 
     private var isFloatOpen = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +49,12 @@ class MainActivity : AppCompatActivity() {
             //.add(R.id.fragment_container, ChatActivity("에어팟팔아용", "1971193", "keonheehan"))
             .addToBackStack(null)
             .commit()
+
+        logoutButton = findViewById(R.id.logoutButton)
+        logoutButton.setOnClickListener {
+            changeActivity(LoginActivity())
+        }
+        changeMainBarText("sealed_secondhand")
     }
 
     private fun toggleFloat() {
@@ -81,9 +91,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun changeActivity(activity: Activity) {
-        Toast.makeText(applicationContext,"hi", Toast.LENGTH_SHORT).show()
         val intent = Intent(applicationContext, activity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun changeMainBarText(text: String) {
+        findViewById<TextView>(R.id.mainBarTextView).text = text
     }
 }
