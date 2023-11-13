@@ -69,27 +69,35 @@
 
 ---
 
-1.로딩화면 구현
+로딩화면 구현
 <br>
-2.로그인 페이지 구현
+로그인 페이지 구현
 <br>
-3.Firebase 로그인, 회원가입 기능 구현
+Firebase 로그인, 회원가입 기능 구현
 <br>
-4.MainActivity Fragment전환으로 Floating Button 구현
+MainActivity Fragment전환으로 Floating Button 구현
 <br>
-5.RecyclerView를 사용한 채팅리스트 구현
+RecyclerView를 사용한 채팅리스트 구현
+
+### 11/13 진행 사항
+
+---
+
+Firebase Storage 관련 기능 (데이터 저장 및 불러오기)
+<br>
+글쓰기 기능
+<br>
+채팅 기능
+<br>
+<br>
 
 ## .. TODO ..
 
 ---
 
-🔲 Firebase Storage 관련 기능 (데이터 저장 및 불러오기)
 <br>
-🔲 글쓰기 기능
-<br>
-🔲 채팅 기능
-<br>
-🔲 등록글 및 채팅방 정렬 기능
+🔲 디자인 개선
+🔲 등록글 판매여부 필터 기능
 <br>
 
 
