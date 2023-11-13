@@ -1,7 +1,5 @@
 package com.example.sealed_secondhand
 
-import android.app.Activity
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import com.bumptech.glide.Glide
 import com.example.sealed_secondhand.db.FirebaseAuthentication
 import com.example.sealed_secondhand.db.models.PostListModel
 import com.example.sealed_secondhand.db.models.User
@@ -74,7 +72,7 @@ class PostActivity(mainActivity: MainActivity, postListModel: PostListModel, isN
             selectImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
                 // Handle the returned Uri
                 if (uri != null) {
-                    (postImageView as ImageView).setImageURI(uri)
+                    postImageView.setImageURI(uri)
                     imageURI = uri
                 }
                 else {
@@ -124,7 +122,9 @@ class PostActivity(mainActivity: MainActivity, postListModel: PostListModel, isN
 
             ref.downloadUrl.addOnSuccessListener {
                 if(it != null) {
-                    postImageView.setImageURI(it)
+                    Glide.with(this)
+                        .load(it)
+                        .into(postImageView)
                 }
                 else {
                     Toast.makeText(context, "이미지를 불러올 수 없습니다.", Toast.LENGTH_SHORT).show()
@@ -134,8 +134,11 @@ class PostActivity(mainActivity: MainActivity, postListModel: PostListModel, isN
             (postPriceEditText as TextView).text = postListModel.price
             (postContentEditText as TextView).text = postListModel.postContent
 
+            if(postListModel.user.firebaseUserId == FirebaseAuthentication.getCurrentUser()) {
+                postUploadButton.visibility = View.INVISIBLE
+            }
             postUploadButton.setOnClickListener {
-                mainActivity.replaceFragment(ChatActivity(postListModel.postTitle, postListModel.postId, postListModel.user.firebaseUserId))
+                mainActivity.replaceFragment(ChatActivity(postListModel.postId, postListModel.user.firebaseUserId))
             }
         }
         postBackButton = view.findViewById(R.id.postBackButton)
