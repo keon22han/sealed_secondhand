@@ -115,6 +115,7 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
                     .addOnFailureListener {
                         Toast.makeText(context, "Failed to Upload Image File to Firebase", Toast.LENGTH_SHORT).show()
                     }
+                (activity as MainActivity).popBackStack()
             }
         }
 
