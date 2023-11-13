@@ -26,9 +26,10 @@ import com.google.firebase.database.getValue
 import com.google.firebase.storage.FirebaseStorage
 import java.util.UUID
 
-class PostActivity(mainActivity: MainActivity, postListModel: PostListModel, isNewPost: Boolean): Fragment() {
+class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListModel: PostListModel, isNewPost: Boolean): Fragment() {
 
     private var mainActivity: MainActivity
+    private var itemImageUrl: String
     private var postListModel: PostListModel
     private var isNewPost: Boolean
 
@@ -48,6 +49,7 @@ class PostActivity(mainActivity: MainActivity, postListModel: PostListModel, isN
 
     init {
         this.mainActivity = mainActivity
+        this.itemImageUrl = itemImageUrl
         this.postListModel = postListModel
         this.isNewPost = isNewPost
     }
@@ -138,7 +140,8 @@ class PostActivity(mainActivity: MainActivity, postListModel: PostListModel, isN
                 postUploadButton.visibility = View.INVISIBLE
             }
             postUploadButton.setOnClickListener {
-                mainActivity.replaceFragment(ChatActivity(postListModel.postId, postListModel.user.firebaseUserId))
+
+                mainActivity.replaceFragment(ChatActivity(postListModel.postTitle, postListModel.postId, postListModel.user.firebaseUserId, itemImageUrl))
             }
         }
         postBackButton = view.findViewById(R.id.postBackButton)
@@ -151,7 +154,6 @@ class PostActivity(mainActivity: MainActivity, postListModel: PostListModel, isN
         FirebaseDatabase.getInstance().reference.child("User")
             .addValueEventListener (object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    Toast.makeText(context, FirebaseAuthentication.getCurrentUser(), Toast.LENGTH_SHORT).show()
                     for (dataSnapShot in snapshot.children) {
                         val user: User = dataSnapShot.getValue<User>() as User
                         if (user.firebaseUserId == FirebaseAuthentication.getCurrentUser()) {

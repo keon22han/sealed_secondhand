@@ -72,7 +72,7 @@ class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<ChatMode
     override fun onBindViewHolder(holder: ChatListViewHolder, position: Int) {
         holder.settingView(getItem(position))
         holder.getLayout().setOnClickListener {
-            mainActivity.replaceFragment(ChatActivity(getItem(position).postId, getItem(position).destUid))
+            mainActivity.replaceFragment(ChatActivity(getItem(position).chatTitle, getItem(position).postId, getItem(position).destUid, getItem(position).itemImageUrl))
         }
     }
 }

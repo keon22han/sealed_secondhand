@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sealed_secondhand.db.FirebaseAuthentication
-import com.example.sealed_secondhand.db.FirebaseAuthentication.Companion.sendMessageToDataBase
 import com.example.sealed_secondhand.db.models.ChatModel
 import com.example.sealed_secondhand.recyclerview.ChatRecyclerAdapter
 import com.google.firebase.database.DataSnapshot
@@ -22,7 +21,8 @@ import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 
-class ChatActivity(postId: String, destUid: String) : Fragment() {
+class ChatActivity(chatTitle: String, postId: String, destUid: String, itemImageUrl: String) : Fragment() {
+
     private lateinit var chatRecyclerView: RecyclerView
     private lateinit var chatRecyclerAdapter: ChatRecyclerAdapter
     private lateinit var sendButton: Button
@@ -33,25 +33,42 @@ class ChatActivity(postId: String, destUid: String) : Fragment() {
         FirebaseDatabase.getInstance().reference.child("chatRooms")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+
+                    var isChatRoomExist = false
+
                     for (childSnapshot in snapshot.children) {
                         var chatListData: ChatModel = childSnapshot.getValue<ChatModel>() as ChatModel
-                        if (chatListData.postId == postId && (chatListData.destUid == destUid || chatListData.myUid == destUid)) {
+                        if (chatListData.postId == postId && (chatListData.destUid ==destUid || chatListData.myUid == destUid)) {
+                            isChatRoomExist = true
                             chatRoomId = childSnapshot.key!!
                             break
                         }
                     }
+
+                    if (!isChatRoomExist) {
+                        var newChatListData = ChatModel()
+                        newChatListData.myUid = FirebaseAuthentication.getCurrentUser()
+                        newChatListData.destUid = destUid
+                        newChatListData.chatTitle = chatTitle
+                        newChatListData.postId = postId
+                        newChatListData.lastChat = ""
+                        newChatListData.itemImageUrl = itemImageUrl
+
+                        var data = FirebaseAuthentication.getChatListRoot().push()
+                        chatRoomId = data.key!!
+                        data.setValue(newChatListData)
+                    }
+
                     getChatRecord()
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    // 에러 처리
                 }
-
             })
     }
 
-
-                override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.activity_chat, container, false)
     }
