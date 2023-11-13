@@ -1,5 +1,6 @@
 package com.example.sealed_secondhand.recyclerview
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.sealed_secondhand.ChatActivity
 import com.example.sealed_secondhand.MainActivity
 import com.example.sealed_secondhand.R
 import com.example.sealed_secondhand.db.models.ChatModel
+import com.google.firebase.storage.FirebaseStorage
 
 class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<ChatModel, ChatListRecyclerAdapter.ChatListViewHolder>(ChatListDiffUtil()) {
 
@@ -43,6 +46,17 @@ class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<ChatMode
             chatTitle.text = item.chatTitle
             lastChat.text = item.lastChat
             destUid = item.destUid
+            FirebaseStorage.getInstance().reference.child(item.itemImageUrl).downloadUrl
+                .addOnSuccessListener {
+                    if(it != null) {
+                        Glide.with(itemView.context)
+                            .load(it)
+                            .into(chatImage)
+                    }
+                    else {
+                        Log.i("hi", "이미지 못불러옴")
+                    }
+                }
 
             // TODO: 1.Firebase에서 image Root 가져오고 2.Storage 가져온 Root로 접근 3.이미지 가져오기 4.Bitmap변환 5.Set
             //chatImage.setImageBitmap()
@@ -58,7 +72,7 @@ class ChatListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<ChatMode
     override fun onBindViewHolder(holder: ChatListViewHolder, position: Int) {
         holder.settingView(getItem(position))
         holder.getLayout().setOnClickListener {
-            mainActivity.replaceFragment(ChatActivity(getItem(position).chatTitle, getItem(position).postId, getItem(position).destUid))
+            mainActivity.replaceFragment(ChatActivity(getItem(position).postId, getItem(position).destUid))
         }
     }
 }

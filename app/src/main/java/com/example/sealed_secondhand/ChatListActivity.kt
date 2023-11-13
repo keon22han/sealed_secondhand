@@ -47,6 +47,7 @@ class ChatListActivity(mainActivity: MainActivity) : Fragment() {
         FirebaseAuthentication.getChatListRoot()
             .addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    chatList.clear()
                     for(dataSnapshot in snapshot.children) {
                         var chatRoom: ChatModel = dataSnapshot.getValue<ChatModel>() as ChatModel
                         if ((chatRoom.destUid == FirebaseAuthentication.getCurrentUser()) || (chatRoom.myUid == FirebaseAuthentication.getCurrentUser())) {
@@ -56,7 +57,7 @@ class ChatListActivity(mainActivity: MainActivity) : Fragment() {
 
                     chatListRecyclerAdapter.submitList(chatList)
                     chatListRecyclerAdapter.notifyDataSetChanged()
-                    chatListRecyclerView.scrollToPosition(0)
+                    //chatListRecyclerView.scrollToPosition(0)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
