@@ -45,17 +45,30 @@ class PostListActivity(mainActivity: MainActivity): Fragment() {
         //FirebaseDatabase로부터 PostListModel 데이터들을 전부 불러옴.
         // TODO: 게시글 필터 기능을 이용하기 위해서 하나의 Flag(ex: salesOn)를 true로 하여 판매중인 상품만 리스트도 가능함.
         // TODO: checkPostList()에서 onDataChange 안에 각 dataSnapShot의 SaleState가 true인지 false인지 확인하면 됨.
-        checkPostList()
+        checkPostList(null)
     }
 
-    private fun checkPostList() {
+    /**
+     * 조건에 맞는 Post를 가져와 List로 보여줌
+     * @author : 허진우
+     * @param   filterFlag : 필터링 조건
+     *      true  : 현재 판매중인 물건
+     *      false : 판매가 완료된 물건
+     *      null  : 필터링 조건이 없음. 즉 모든 물건을 보여줌
+     */
+    public fun checkPostList(filterFlag : Boolean? = null) {
         var postList: ArrayList<PostListModel> = ArrayList()
+        var postListModel : PostListModel
+
         FirebaseDatabase.getInstance().reference.child("Post")
             .addValueEventListener(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     postList.clear()
                     for (dataSnapShot in snapshot.children) {
-                        postList.add(dataSnapShot.getValue<PostListModel>() as PostListModel)
+                        postListModel = dataSnapShot.getValue<PostListModel>() as PostListModel
+                        if (postListModel.saleState == filterFlag ?: postListModel.saleState) {
+                            postList.add(postListModel)
+                        }
                     }
 
                     // 전체 데이터를 불러왔으니 Adapter에게 알리기.
