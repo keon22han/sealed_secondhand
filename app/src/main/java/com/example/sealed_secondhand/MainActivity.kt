@@ -7,10 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.transition.Visibility
 import com.example.sealed_secondhand.db.models.PostListModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -120,6 +125,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun replaceFragment(fragment: Fragment) {
+        if(fragment.javaClass.simpleName != "PostListActivity") {
+            val filterLayout: LinearLayout = findViewById(R.id.filterLayout)
+            filterLayout.visibility = LinearLayout.GONE
+            val fragmentContainer: FrameLayout = findViewById(R.id.fragment_container)
+
+            val layoutParams = fragmentContainer.layoutParams as ConstraintLayout.LayoutParams
+            layoutParams.topMargin = 135
+            fragmentContainer.layoutParams = layoutParams
+        }
+        else {
+            val filterLayout: LinearLayout = findViewById(R.id.filterLayout)
+            filterLayout.visibility = LinearLayout.VISIBLE
+            val fragmentContainer: FrameLayout = findViewById(R.id.fragment_container)
+
+            val layoutParams = fragmentContainer.layoutParams as ConstraintLayout.LayoutParams
+            layoutParams.topMargin = 280
+            fragmentContainer.layoutParams = layoutParams
+        }
+
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(
                 androidx.appcompat.R.anim.abc_fade_in,
