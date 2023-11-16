@@ -42,6 +42,7 @@
             android:layout_margin="5dp"
             android:background="@drawable/button_style3"
             android:text="로그아웃"/>
+
     </LinearLayout>
 
     <FrameLayout
@@ -53,7 +54,9 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/mainBarLayout">
+
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pictureFloatButton"
@@ -62,11 +65,11 @@
         android:layout_margin="24dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/picture"
+        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/plusFloatButton"
         app:layout_constraintEnd_toEndOf="@+id/plusFloatButton"
         app:layout_constraintStart_toStartOf="@+id/plusFloatButton"
-        app:layout_constraintTop_toTopOf="@+id/plusFloatButton"
-        app:fabSize="mini"/>
+        app:layout_constraintTop_toTopOf="@+id/plusFloatButton" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/chattingFloatButton"
@@ -92,6 +95,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:fabSize="mini"/>
 
+    <Button
+        android:id="@+id/showAllProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전체보기"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+
+    <Button
+        android:id="@+id/showSalesProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="판매중"
+        app:layout_constraintStart_toEndOf="@+id/showAllProduct"
+        app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+
+    <Button
+        android:id="@+id/showSaledProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="판매완료"
+        app:layout_constraintStart_toEndOf="@+id/showSalesProduct"
+        app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+  
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
