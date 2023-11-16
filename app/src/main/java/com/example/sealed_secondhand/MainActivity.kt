@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.sealed_secondhand.db.models.PostListModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var pictureFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,12 +39,36 @@ class MainActivity : AppCompatActivity() {
         plusFloatButton.setOnClickListener {
             toggleFloat()
         }
+
         pictureFloatButton.setOnClickListener {
             replaceFragment(PostActivity(this@MainActivity, "", PostListModel(), true))
         }
+
         chattingFloatButton.setOnClickListener {
             replaceFragment(ChatListActivity(this))
         }
+
+        // BottomNavigationView 인스턴스를 찾습니다.
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    replaceFragment(PostListActivity(this))
+                    true
+                }
+                R.id.navigation_chat -> {
+                    replaceFragment(ChatListActivity(this))
+                    true
+                }
+                R.id.navigation_user -> {
+                    //replaceFragment(UserActivity())
+                    true
+                }
+                else -> false
+            }
+        }
+
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(
                 androidx.appcompat.R.anim.abc_fade_in,
@@ -102,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                 androidx.appcompat.R.anim.abc_fade_in,
                 androidx.appcompat.R.anim.abc_fade_out
             )
-            .add(R.id.fragment_container, fragment)
+            .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
     }
