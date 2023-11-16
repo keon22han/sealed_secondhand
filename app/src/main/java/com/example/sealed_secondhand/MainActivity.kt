@@ -19,10 +19,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var plusFloatButton : com.google.android.material.floatingactionbutton.FloatingActionButton
     private lateinit var logoutButton : Button
 
+    private lateinit var postListActivity: PostListActivity
+    private lateinit var filteringAllButton : Button
+    private lateinit var filteringSalesButton : Button
+    private lateinit var filteringSaledButtoon : Button
+
     private var isFloatOpen = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        postListActivity = PostListActivity(this)
 
         pictureFloatButton = findViewById(R.id.pictureFloatButton)
         chattingFloatButton = findViewById(R.id.chattingFloatButton)
@@ -45,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 androidx.appcompat.R.anim.abc_fade_in,
                 androidx.appcompat.R.anim.abc_fade_out
             )
-            .add(R.id.fragment_container, PostListActivity(this))
+            .add(R.id.fragment_container, postListActivity)
             //.add(R.id.fragment_container, ChatActivity("에어팟팔아용", "1971193", "keonheehan"))
             .addToBackStack(null)
             .commit()
@@ -55,6 +61,23 @@ class MainActivity : AppCompatActivity() {
             changeActivity(LoginActivity())
         }
         changeMainBarText("sealed_secondhand")
+
+        // 필터링을 위한 clicklistener 작성
+        filteringAllButton = findViewById(R.id.showAllProduct)
+        filteringSalesButton = findViewById(R.id.showSalesProduct)
+        filteringSaledButtoon = findViewById(R.id.showSaledProduct)
+
+        filteringAllButton.setOnClickListener {
+            postListActivity.checkPostList(null)
+        }
+
+        filteringSalesButton.setOnClickListener {
+            postListActivity.checkPostList(true)
+        }
+
+        filteringSaledButtoon.setOnClickListener {
+            postListActivity.checkPostList(false)
+        }
     }
 
     private fun toggleFloat() {
