@@ -9,7 +9,7 @@
         android:id="@+id/mainBarLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#809BFF"
+        android:background="#865DFF"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -103,7 +103,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainBarLayout"
         android:orientation="horizontal">
-        <Button
+        <android.widget.Button
             android:id="@+id/showAllProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
 
-        <Button
+        <android.widget.Button
             android:id="@+id/showSalesProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
             app:layout_constraintStart_toEndOf="@+id/showAllProduct"
             app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
 
-        <Button
+        <android.widget.Button
             android:id="@+id/showSaledProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="?android:attr/windowBackground"
+        android:background="#865DFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
