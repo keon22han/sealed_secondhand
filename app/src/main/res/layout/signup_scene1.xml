@@ -101,19 +101,21 @@
         android:id="@+id/layout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Button
+        <android.widget.Button
             android:id="@+id/signupBackButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
+            android:background="@drawable/button_style7"
             android:text="BACK" />
-        <Button
+        <android.widget.Button
             android:id="@+id/signupCompleteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:background="@drawable/button_style7"
             android:text="CONFIRM" />
     </LinearLayout>
 </LinearLayout>
