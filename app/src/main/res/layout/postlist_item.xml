@@ -3,9 +3,9 @@
     android:id="@+id/postListLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
+    android:padding="8dp"
     android:paddingBottom="64dp"
-    android:background="#FFFFFF"
+    android:background="#000000"
     android:orientation="vertical">
 
     <LinearLayout
@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="100dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="16dp"
             android:scaleType="centerCrop" />
 
         <LinearLayout
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="Your Text Here"
                 android:textSize="16sp"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:layout_marginBottom="10dp" />
 
             <LinearLayout
@@ -49,7 +49,8 @@
                     android:layout_height="wrap_content"
                     android:text="₩10,000"
                     android:textSize="14sp"
-                    android:textColor="#000000" />
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="28dp"/>
 
                 <TextView
                     android:id="@+id/postListSaleStateTextView"
@@ -58,7 +59,9 @@
                     android:layout_height="wrap_content"
                     android:text="For Sale"
                     android:textSize="14sp"
-                    android:textColor="#000000" />
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginLeft="40dp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -66,5 +69,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/black" />
+        android:background="@android:color/white" />
 </LinearLayout>
