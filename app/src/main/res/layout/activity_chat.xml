@@ -23,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="11"
-
         android:background="@drawable/button_style4"
         app:layout_constraintTop_toBottomOf="@+id/chatRecyclerView">
 
@@ -32,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-
             android:layout_weight="2"
             android:hint="Type here" />
 
