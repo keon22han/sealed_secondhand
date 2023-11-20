@@ -69,6 +69,7 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
         this.postContentEditText = view.findViewById(R.id.postContextEditText)
         this.postUploadButton = view.findViewById(R.id.postUploadButton)
 
+
         getUserData()
         if (isNewPost) {
             selectImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -138,22 +139,31 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
             (postContentEditText as TextView).text = postListModel.postContent
 
             if(postListModel.user.firebaseUserId == FirebaseAuthentication.getCurrentUser()) {
-                postUploadButton.visibility = View.INVISIBLE
+                postUploadButton.text = "게시물 수정"
+                postUploadButton.setOnClickListener {
+                    mainActivity.replaceFragment(PostEditActivity(postListModel))
+                }
             }
-            postUploadButton.setOnClickListener {
 
-                mainActivity.replaceFragment(ChatActivity(postListModel.postTitle, postListModel.postId, postListModel.user.firebaseUserId, itemImageUrl))
+            else {
+                postUploadButton.setOnClickListener {
+                    mainActivity.replaceFragment(ChatActivity(postListModel.postTitle, postListModel.postId, postListModel.user.firebaseUserId, itemImageUrl))
+                }
+
+                if (!postListModel.saleState) {
+                    postUploadButton.isEnabled = false
+                }
             }
         }
         postBackButton = view.findViewById(R.id.postBackButton)
         postBackButton.setOnClickListener {
-            mainActivity.popBackStack()
+            mainActivity.replaceFragment(PostListActivity(mainActivity))
         }
     }
 
     private fun getUserData() {
         FirebaseDatabase.getInstance().reference.child("User")
-            .addValueEventListener (object: ValueEventListener{
+            .addValueEventListener (object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (dataSnapShot in snapshot.children) {
                         val user: User = dataSnapShot.getValue<User>() as User

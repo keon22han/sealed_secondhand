@@ -9,7 +9,7 @@
         android:id="@+id/mainBarLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#865DFF"
+        android:background="#333333"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:gravity="center"
+            android:textColor="@color/white"
             android:textSize="25dp" />
 
         <Button
@@ -40,7 +41,7 @@
             android:layout_weight="20"
             android:textSize="10dp"
             android:layout_margin="5dp"
-            android:background="@drawable/button_style3"
+            android:background="@drawable/button_style5"
             android:text="로그아웃"/>
 
     </LinearLayout>
@@ -50,12 +51,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/plusFloatButton"
-        android:layout_marginTop="100dp"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterLayout">
-
+        app:layout_constraintRight_toRightOf="parent">
     </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -89,57 +88,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="130dp"
         android:src="@drawable/plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:fabSize="mini"/>
+
     <LinearLayout
         android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainBarLayout"
-        android:orientation="horizontal">
-        <android.widget.Button
-            android:id="@+id/showAllProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="전체"
-            android:background="@drawable/button_style3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
-
-        <android.widget.Button
-            android:id="@+id/showSalesProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="판매중"
-            android:background="@drawable/button_style3"
-            app:layout_constraintStart_toEndOf="@+id/showAllProduct"
-            app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
-
-        <android.widget.Button
-            android:id="@+id/showSaledProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="판매완료"
-            android:background="@drawable/button_style3"
-            app:layout_constraintStart_toEndOf="@+id/showSalesProduct"
-            app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+        android:orientation="vertical">
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="#865DFF"
+        android:background="#333333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

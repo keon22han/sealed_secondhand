@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D3BBFF">
+    android:background="#333333">
 
     <FrameLayout
         android:id="@+id/signup_scene_root"

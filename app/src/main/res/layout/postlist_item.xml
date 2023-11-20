@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:padding="8dp"
     android:paddingBottom="64dp"
-    android:background="#000000"
+    android:background="@drawable/button_style7"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,10 +16,10 @@
         <ImageView
             android:id="@+id/postListImageView"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="3"
-            android:layout_height="100dp"
             android:paddingBottom="16dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerInside" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -63,11 +63,31 @@
                     android:layout_marginTop="28dp"
                     android:layout_marginLeft="40dp"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/ic_launcher_round"
+                    android:scaleType="centerInside"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:id="@+id/postListUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="keonheehan"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/white" />
 </LinearLayout>

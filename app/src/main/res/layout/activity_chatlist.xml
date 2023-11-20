@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#232323">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
-        android:background="@color/black"
+        android:background="#333333"
         android:orientation="horizontal" />
 </LinearLayout>
