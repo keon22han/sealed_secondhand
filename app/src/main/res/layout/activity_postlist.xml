@@ -2,13 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#B1B1B1">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF333333"
+        android:orientation="horizontal">
+        <android.widget.Button
+            android:id="@+id/showAllProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:text="전체"
+            android:background="@drawable/button_style5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+
+        <android.widget.Button
+            android:id="@+id/showSalesProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:text="판매중"
+            android:background="@drawable/button_style5"
+            app:layout_constraintStart_toEndOf="@+id/showAllProduct"
+            app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+
+        <android.widget.Button
+            android:id="@+id/showSaledProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:text="판매완료"
+            android:background="@drawable/button_style5"
+            app:layout_constraintStart_toEndOf="@+id/showSalesProduct"
+            app:layout_constraintTop_toBottomOf="@+id/mainBarLayout" />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:background="@color/black"
+        android:layout_height="match_parent"
+        android:background="#FF333333"
         />
 </LinearLayout>

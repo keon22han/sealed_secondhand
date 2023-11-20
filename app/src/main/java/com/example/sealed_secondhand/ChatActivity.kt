@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sealed_secondhand.db.FirebaseAuthentication
 import com.example.sealed_secondhand.db.models.ChatModel
 import com.example.sealed_secondhand.recyclerview.ChatRecyclerAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -84,7 +87,6 @@ class ChatActivity(chatTitle: String, postId: String, destUid: String, itemImage
         chatRecyclerAdapter = ChatRecyclerAdapter(comments)
         chatRecyclerView.adapter = chatRecyclerAdapter
         chatRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-
 
         // TODO: View 접근하여 ChatRecyclerAdapter 갱신 코드 작성 및 View 이벤트 할당
     }

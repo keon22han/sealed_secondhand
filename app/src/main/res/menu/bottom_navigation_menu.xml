@@ -8,8 +8,4 @@
         android:id="@+id/navigation_chat"
         android:icon="@drawable/chat"
         android:title="Chat" />
-    <item
-        android:id="@+id/navigation_user"
-        android:icon="@drawable/user"
-        android:title="User" />
 </menu>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,10 @@ class PostListActivity(mainActivity: MainActivity): Fragment() {
     var mainActivity: MainActivity
     private lateinit  var postListRecyclerView: RecyclerView
     private lateinit var postListRecyclerAdapter: PostListRecyclerAdapter
+
+    private lateinit var filteringAllButton: Button
+    private lateinit var filteringSalesButton: Button
+    private lateinit var filteringSaledButton: Button
 
     init {
         // mainActivity를 가져오는 이유는 Adapter에 사용되는 View 클릭 시 mainActivity에서 Fragment 변경이 필요하기 때문.
@@ -42,6 +47,22 @@ class PostListActivity(mainActivity: MainActivity): Fragment() {
         //layout Manager 설정
         postListRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
 
+        // 필터링을 위한 clicklistener 작성
+        filteringAllButton = view.findViewById(R.id.showAllProduct)
+        filteringSalesButton = view.findViewById(R.id.showSalesProduct)
+        filteringSaledButton = view.findViewById(R.id.showSaledProduct)
+
+        filteringAllButton.setOnClickListener {
+            checkPostList(null)
+        }
+
+        filteringSalesButton.setOnClickListener {
+            checkPostList(true)
+        }
+
+        filteringSaledButton.setOnClickListener {
+            checkPostList(false)
+        }
         //FirebaseDatabase로부터 PostListModel 데이터들을 전부 불러옴.
         // TODO: 게시글 필터 기능을 이용하기 위해서 하나의 Flag(ex: salesOn)를 true로 하여 판매중인 상품만 리스트도 가능함.
         // TODO: checkPostList()에서 onDataChange 안에 각 dataSnapShot의 SaleState가 true인지 false인지 확인하면 됨.
@@ -56,7 +77,8 @@ class PostListActivity(mainActivity: MainActivity): Fragment() {
      *      false : 판매가 완료된 물건
      *      null  : 필터링 조건이 없음. 즉 모든 물건을 보여줌
      */
-    public fun checkPostList(filterFlag : Boolean? = null) {
+
+    fun checkPostList(filterFlag : Boolean? = null) {
         var postList: ArrayList<PostListModel> = ArrayList()
         var postListModel : PostListModel
 

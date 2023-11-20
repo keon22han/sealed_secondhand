@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 import com.google.firebase.storage.FirebaseStorage
+import java.awt.font.TextAttribute
 
 class PostListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<PostListModel, PostListRecyclerAdapter.PostListViewHolder>(PostListDiffUtil()) {
 
@@ -42,6 +43,7 @@ class PostListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<PostList
         var postListPriceTextView: TextView
         var postListSaleStateTextView: TextView
         var postListLayout: LinearLayout
+        var postListUserName: TextView
 
         init {
             this.postListImageView = itemView.findViewById(R.id.postListImageView)
@@ -49,6 +51,7 @@ class PostListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<PostList
             this.postListPriceTextView = itemView.findViewById(R.id.postListPriceTextView)
             this.postListSaleStateTextView = itemView.findViewById(R.id.postListSaleStateTextView)
             this.postListLayout = itemView.findViewById(R.id.postListLayout)
+            this.postListUserName = itemView.findViewById(R.id.postListUserName)
         }
     }
 
@@ -70,7 +73,7 @@ class PostListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<PostList
                     .into(holder.postListImageView)
             }
             else {
-                Log.i("hi", "이미지 못불러옴")
+                Log.i("hi", "이미지를 불러오지 못하였습니다.")
             }
         }
 
@@ -82,41 +85,10 @@ class PostListRecyclerAdapter(mainActivity: MainActivity) : ListAdapter<PostList
         }
 
         holder.postListLayout.setOnClickListener {
-
-//            FirebaseDatabase.getInstance().reference.child("chatRooms")
-//                .addValueEventListener(object : ValueEventListener {
-//                    override fun onDataChange(snapshot: DataSnapshot) {
-//
-//                        var isChatRoomExist = false
-//
-//                        for (childSnapshot in snapshot.children) {
-//                            var chatListData: ChatModel = childSnapshot.getValue<ChatModel>() as ChatModel
-//                            if (chatListData.postId == getItem(position).postId && (chatListData.destUid == getItem(position).user.firebaseUserId || chatListData.myUid == getItem(position).user.firebaseUserId)) {
-//                                isChatRoomExist = true
-//                                break
-//                            }
-//                        }
-//
-//                        if (!isChatRoomExist) {
-//                            var newChatListData = ChatModel()
-//                            newChatListData.myUid = FirebaseAuthentication.getCurrentUser()
-//                            newChatListData.destUid = getItem(position).user.firebaseUserId
-//                            newChatListData.chatTitle = getItem(position).postTitle
-//                            newChatListData.postId = getItem(position).postId
-//                            newChatListData.lastChat = ""
-//                            newChatListData.itemImageUrl = getItem(position).itemImageUrl
-//
-//                            var data = FirebaseAuthentication.getChatListRoot().push()
-//                            data.setValue(newChatListData)
-//                        }
-//                    }
-//
-//                    override fun onCancelled(error: DatabaseError) {
-//                        // 에러 처리
-//                    }
-//                })
             // TODO: PostActivity 추가되면 해당 코드 주석 제거
             mainActivity.replaceFragment(PostActivity(mainActivity, getItem(position).itemImageUrl, getItem(position), false))
         }
+
+        holder.postListUserName.setText(getItem(position).user.nickName)
     }
 }

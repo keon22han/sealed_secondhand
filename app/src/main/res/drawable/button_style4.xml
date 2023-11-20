@@ -6,7 +6,7 @@
     <item android:id="@android:id/background">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
             <corners android:radius="30dp"/>
-            <solid android:color="#ff8bfc"/>
+            <solid android:color="#E4E4E4E4"/>
         </shape>
     </item>
 

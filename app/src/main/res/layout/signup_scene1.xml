@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/layout_style1"
+        android:background="@drawable/button_style6"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_margin="20dp"
-        android:background="@drawable/layout_style1"
+        android:background="@drawable/button_style6"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_margin="20dp"
-        android:background="@drawable/layout_style1"
+        android:background="@drawable/button_style6"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_margin="20dp"
-        android:background="@drawable/layout_style1"
+        android:background="@drawable/button_style6"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
@@ -107,7 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@drawable/button_style7"
+            android:background="@drawable/button_style6"
+            android:textColor="@color/white"
             android:text="BACK" />
         <android.widget.Button
             android:id="@+id/signupCompleteButton"
@@ -115,7 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/button_style7"
+            android:background="@drawable/button_style6"
+            android:textColor="@color/white"
             android:text="CONFIRM" />
     </LinearLayout>
 </LinearLayout>

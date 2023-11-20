@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
@@ -26,11 +27,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var logoutButton : Button
 
     private lateinit var postListActivity: PostListActivity
-    private lateinit var filteringAllButton : Button
-    private lateinit var filteringSalesButton : Button
-    private lateinit var filteringSaledButtoon : Button
 
     private var isFloatOpen = false
+
+    private var dX: Float = 0.toFloat()
+    private var dY: Float = 0.toFloat()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,9 +42,6 @@ class MainActivity : AppCompatActivity() {
         plusFloatButton = findViewById(R.id.plusFloatButton)
 
         // TODO: setOnClickListener 작성
-        plusFloatButton.setOnClickListener {
-            toggleFloat()
-        }
 
         pictureFloatButton.setOnClickListener {
             replaceFragment(PostActivity(this@MainActivity, "", PostListModel(), true))
@@ -51,6 +49,10 @@ class MainActivity : AppCompatActivity() {
 
         chattingFloatButton.setOnClickListener {
             replaceFragment(ChatListActivity(this))
+        }
+
+        plusFloatButton.setOnClickListener {
+            toggleFloat()
         }
 
         // BottomNavigationView 인스턴스를 찾습니다.
@@ -64,10 +66,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_chat -> {
                     replaceFragment(ChatListActivity(this))
-                    true
-                }
-                R.id.navigation_user -> {
-                    //replaceFragment(UserActivity())
                     true
                 }
                 else -> false
@@ -90,25 +88,10 @@ class MainActivity : AppCompatActivity() {
         logoutButton.setOnClickListener {
             changeActivity(LoginActivity())
         }
+
         changeMainBarText("sealed_secondhand")
-
-        // 필터링을 위한 clicklistener 작성
-        filteringAllButton = findViewById(R.id.showAllProduct)
-        filteringSalesButton = findViewById(R.id.showSalesProduct)
-        filteringSaledButtoon = findViewById(R.id.showSaledProduct)
-
-        filteringAllButton.setOnClickListener {
-            postListActivity.checkPostList(null)
-        }
-
-        filteringSalesButton.setOnClickListener {
-            postListActivity.checkPostList(true)
-        }
-
-        filteringSaledButtoon.setOnClickListener {
-            postListActivity.checkPostList(false)
-        }
     }
+
 
     private fun toggleFloat() {
         // 플로팅 액션 버튼 닫기 - 열려있는 플로팅 버튼 집어넣는 애니메이션
@@ -140,7 +123,6 @@ class MainActivity : AppCompatActivity() {
             val fragmentContainer: FrameLayout = findViewById(R.id.fragment_container)
 
             val layoutParams = fragmentContainer.layoutParams as ConstraintLayout.LayoutParams
-            layoutParams.topMargin = 280
             fragmentContainer.layoutParams = layoutParams
         }
 
