@@ -29,6 +29,8 @@ class ChatActivity(chatTitle: String, postId: String, destUid: String, itemImage
     private lateinit var chatRecyclerView: RecyclerView
     private lateinit var chatRecyclerAdapter: ChatRecyclerAdapter
     private lateinit var sendButton: Button
+    private lateinit var backButton: Button
+
     private var chatRoomId: String = ""
     private var comments: ArrayList<ChatModel.Comment> = ArrayList()
 
@@ -82,6 +84,11 @@ class ChatActivity(chatTitle: String, postId: String, destUid: String, itemImage
         sendButton.setOnClickListener {
             sendMessageToDataBase(view.findViewById(R.id.chatEditText))
         }
+        backButton = view.findViewById(R.id.chatBackButton)
+        backButton.setOnClickListener {
+            (activity as MainActivity).popBackStack()
+        }
+
         // chatListRecyclerView
         chatRecyclerView = view.findViewById(R.id.chatRecyclerView)
         chatRecyclerAdapter = ChatRecyclerAdapter(comments)

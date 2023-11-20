@@ -25,10 +25,15 @@
         app:layout_constraintTop_toBottomOf="@+id/chatRecyclerView"
         tools:layout_editor_absoluteX="0dp">
 
+        <android.widget.Button
+            android:id="@+id/chatBackButton"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:background="@drawable/back"/>
         <EditText
             android:id="@+id/chatEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
             android:layout_marginLeft="20dp"
             android:layout_weight="2"
             android:textColor="@color/white"
