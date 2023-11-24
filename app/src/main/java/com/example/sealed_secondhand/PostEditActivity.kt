@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.sealed_secondhand.db.models.PostListModel
@@ -51,24 +52,30 @@ class PostEditActivity(postListModel: PostListModel): Fragment() {
                 }
             }
         view.findViewById<Button>(R.id.editPostUploadButton).setOnClickListener {
-            //수정된 내용 데이터베이스 반영
-            postListModel.postTitle = view.findViewById<EditText>(R.id.editPostTitleEditText).text.toString()
-            postListModel.price = view.findViewById<EditText>(R.id.editPostPriceEditText).text.toString()
-            postListModel.postContent = view.findViewById<EditText>(R.id.editPostContextEditText).text.toString()
+            if(view.findViewById<EditText>(R.id.editPostTitleEditText).text.toString() != "" &&
+                view.findViewById<EditText>(R.id.editPostPriceEditText).text.toString() != "" &&
+                view.findViewById<EditText>(R.id.editPostContextEditText).text.toString() != "") {
+                //수정된 내용 데이터베이스 반영
+                postListModel.postTitle = view.findViewById<EditText>(R.id.editPostTitleEditText).text.toString()
+                postListModel.price = view.findViewById<EditText>(R.id.editPostPriceEditText).text.toString()
+                postListModel.postContent = view.findViewById<EditText>(R.id.editPostContextEditText).text.toString()
 
-            val dataToUpdate: MutableMap<String, Any> = HashMap()
-            dataToUpdate["postTitle"] = postListModel.postTitle
-            dataToUpdate["price"] = postListModel.price
-            dataToUpdate["saleState"] = postListModel.saleState
-            dataToUpdate["postContent"] = postListModel.postContent
-            FirebaseDatabase.getInstance().getReference("Post/${postListModel.postId}").updateChildren(dataToUpdate)
-                .addOnSuccessListener {
-                    Log.d("Update", "Data updated successfully");
-                }
-                .addOnFailureListener {
-                    Log.i("Update", "Error updating data")
-                }
-            (activity as MainActivity).popBackStack()
+                val dataToUpdate: MutableMap<String, Any> = HashMap()
+                dataToUpdate["postTitle"] = postListModel.postTitle
+                dataToUpdate["price"] = postListModel.price
+                dataToUpdate["saleState"] = postListModel.saleState
+                dataToUpdate["postContent"] = postListModel.postContent
+                FirebaseDatabase.getInstance().getReference("Post/${postListModel.postId}").updateChildren(dataToUpdate)
+                    .addOnSuccessListener {
+                        Log.d("Update", "Data updated successfully");
+                    }
+                    .addOnFailureListener {
+                        Log.i("Update", "Error updating data")
+                    }
+                (activity as MainActivity).popBackStack()
+            }
+            else
+                Toast.makeText(context, "작성하지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show()
         }
 
 
