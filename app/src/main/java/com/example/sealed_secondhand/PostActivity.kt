@@ -14,6 +14,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.init
 import com.example.sealed_secondhand.db.FirebaseAuthentication
 import com.example.sealed_secondhand.db.models.PostListModel
 import com.example.sealed_secondhand.db.models.User
@@ -46,6 +47,7 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
 
     private lateinit var imageURI: Uri
     private lateinit var storageImagePath: String
+    private var isImageUploaded: Boolean = false
 
     init {
         this.mainActivity = mainActivity
@@ -75,6 +77,7 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
             selectImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
                 // Handle the returned Uri
                 if (uri != null) {
+                    isImageUploaded = true
                     postImageView.setImageURI(uri)
                     imageURI = uri
                 }
@@ -88,13 +91,14 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
             }
 
             postUploadButton.setOnClickListener {
+
                 val uuid: String = UUID.randomUUID().toString()
                 storageImagePath = "/itemImage/$uuid"
 
                 val storageReference = FirebaseStorage.getInstance().reference
                 val ref = storageReference.child(storageImagePath)
 
-                if((postTitleEditText as EditText).text.toString() != "" && (postPriceEditText as EditText).text.toString() != "" && (postContentEditText as EditText).text.toString() != "") {
+                if((postTitleEditText as EditText).text.toString() != "" && (postPriceEditText as EditText).text.toString() != "" && (postContentEditText as EditText).text.toString() != "" && isImageUploaded) {
                     ref.putFile(imageURI)
                         .addOnSuccessListener {
 
@@ -119,7 +123,7 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
                     (activity as MainActivity).popBackStack()
                 }
                 else {
-                    Toast.makeText(context, "작성하지 않은 내용이 있는지 확인해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "이미지를 등록하지 않았거나, 작성하지 않은 내용이 있는지 확인해주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -148,7 +152,7 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
                     if((postTitleEditText as TextView).text.toString() != "" && (postPriceEditText as TextView).text.toString() != "" && (postContentEditText as TextView).text.toString() != "")
                         mainActivity.replaceFragment(PostEditActivity(postListModel))
                     else
-                        Toast.makeText(context, "입력하지 않은 칸이 존재합니다.", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, "입력하지 않은 내용이 존재합니다.", Toast.LENGTH_SHORT)
                 }
             }
 

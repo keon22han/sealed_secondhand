@@ -75,7 +75,7 @@ class PostEditActivity(postListModel: PostListModel): Fragment() {
                 (activity as MainActivity).popBackStack()
             }
             else
-                Toast.makeText(context, "작성하지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "입력하지 않은 내용이 있습니다.", Toast.LENGTH_SHORT).show()
         }
 
 
