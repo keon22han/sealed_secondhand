@@ -23,7 +23,7 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_margin="30dp"
-                android:background="@mipmap/ic_launcher" />
+                android:src="@drawable/imageadd"/>
 
             <android.widget.Button
                 android:id="@+id/imageUploadButton"
@@ -83,6 +83,11 @@
                         android:textSize="15dp"
                         android:hint="판매 금액을 설정하세요."
                         android:inputType="number" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:textColor="@color/white"
+                        android:text=" 원"/>
                 </LinearLayout>
             </LinearLayout>
 
