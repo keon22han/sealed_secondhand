@@ -93,9 +93,11 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
 
                 val storageReference = FirebaseStorage.getInstance().reference
                 val ref = storageReference.child(storageImagePath)
-                ref.putFile(imageURI)
-                    .addOnSuccessListener {
-                        if((postTitleEditText as EditText).text.toString() != "" && (postPriceEditText as EditText).text.toString() != "" && (postContentEditText as EditText).text.toString() != "") {
+
+                if((postTitleEditText as EditText).text.toString() != "" && (postPriceEditText as EditText).text.toString() != "" && (postContentEditText as EditText).text.toString() != "") {
+                    ref.putFile(imageURI)
+                        .addOnSuccessListener {
+
 
                             val dbReference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Post").push()
                             val postId: String = dbReference.key!!
@@ -108,15 +110,17 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
                             post.user = postUser
 
                             dbReference.setValue(post)
+
+
                         }
-                        else {
-                            Toast.makeText(context, "작성하지 않은 내용이 있는지 확인해주세요.", Toast.LENGTH_SHORT).show()
+                        .addOnFailureListener {
+                            Toast.makeText(context, "Failed to Upload Image File to Firebase", Toast.LENGTH_SHORT).show()
                         }
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(context, "Failed to Upload Image File to Firebase", Toast.LENGTH_SHORT).show()
-                    }
-                (activity as MainActivity).popBackStack()
+                    (activity as MainActivity).popBackStack()
+                }
+                else {
+                    Toast.makeText(context, "작성하지 않은 내용이 있는지 확인해주세요.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -141,7 +145,10 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
             if(postListModel.user.firebaseUserId == FirebaseAuthentication.getCurrentUser()) {
                 postUploadButton.text = "게시물 수정"
                 postUploadButton.setOnClickListener {
-                    mainActivity.replaceFragment(PostEditActivity(postListModel))
+                    if((postTitleEditText as TextView).text.toString() != "" && (postPriceEditText as TextView).text.toString() != "" && (postContentEditText as TextView).text.toString() != "")
+                        mainActivity.replaceFragment(PostEditActivity(postListModel))
+                    else
+                        Toast.makeText(context, "입력하지 않은 칸이 존재합니다.", Toast.LENGTH_SHORT)
                 }
             }
 

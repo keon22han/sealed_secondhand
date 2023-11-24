@@ -49,10 +49,6 @@ class FirebaseAuthentication private constructor() {
             return FirebaseDatabase.getInstance().reference.child("chatRooms").child(chatRoomUid).child("comments").push().setValue(comment)
         }
 
-        fun getChatListRootOrdered(): Query {
-            return FirebaseDatabase.getInstance().reference.child("chatRooms").orderByChild("users/$myUid")
-        }
-
         fun getChatListRoot(): DatabaseReference {
             return FirebaseDatabase.getInstance().reference.child("chatRooms")
         }
