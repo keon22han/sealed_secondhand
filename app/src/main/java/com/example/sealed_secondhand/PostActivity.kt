@@ -101,7 +101,7 @@ class PostActivity(mainActivity: MainActivity, itemImageUrl: String, postListMod
                             val postId: String = dbReference.key!!
                             val post = PostListModel()
                             post.postTitle = (postTitleEditText as EditText).text.toString()
-                            post.price = "${(postPriceEditText as EditText).text} 원"
+                            post.price = "${(postPriceEditText as EditText).text}"
                             post.postContent = (postContentEditText as EditText).text.toString()
                             post.postId = postId
                             post.itemImageUrl = storageImagePath

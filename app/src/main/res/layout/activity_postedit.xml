@@ -74,6 +74,12 @@
                         android:textSize="15dp"
                         android:hint="판매 금액을 설정하세요."
                         android:inputType="number" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:text=" 원"/>
                 </LinearLayout>
             </LinearLayout>
 
